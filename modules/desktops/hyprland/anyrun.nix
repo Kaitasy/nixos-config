@@ -21,7 +21,7 @@ in {
         "ignore_alpha 0.6, match:namespace anyrun"
       ];
       bind = [
-        "SUPER, R, exec, ${pkgs.anyrun} -c ~/.config/anyrun/hypr"
+        "$mainMod, R, exec, ${pkgs.anyrun} -c ~/.config/anyrun/hypr"
       ];
     };
 

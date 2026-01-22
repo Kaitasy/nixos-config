@@ -35,7 +35,7 @@ in {
 
     modules.desktops.hyprland.settings = {
       exec-once = [
-        "${lib.getExe pkg} -c ~/.config/ignis/hypr/config.py"
+        "${lib.getExe pkg} init -c ~/.config/ignis/hypr/config.py"
       ];
       layerrule = [
         "blur on, match:namespace shell-bar"

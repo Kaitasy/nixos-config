@@ -20,6 +20,10 @@ in {
       default = false;
       description = "Use latest commit on the main branch";
     };
+    mainModKey = lib.mkOption {
+      type = lib.types.str;
+      default = "SUPER";
+    };
     settings = lib.mkOption {
       type = self.lib.types.hyprType;
       default = {};
@@ -56,6 +60,8 @@ in {
           })
           (builtins.attrNames common.monitors));
         base = rec {
+          "$mainMod" = cfg.mainModKey;
+
           input = {
             kb_layout = common.input.keyboardLayout;
             follow_mouse = 1;
@@ -138,7 +144,7 @@ in {
             animation = [
               "global, 1, 30, default"
               "border, 1, 3.39, easeOutQuint"
-              "windows, 1, 4,79, easeOutQuint"
+              "windows, 1, 4.79, easeOutQuint"
               "windowsIn, 1, 4.1, easeOutQuint"
               "windowsOut, 1, 1.49, linear, popin 87%"
               "fadeIn, 1, 1.73, almostLinear"
@@ -155,38 +161,38 @@ in {
 
           bind =
             [
-              "SUPER, C, killactive"
-              "SUPER, X, togglefloating"
-              "SUPER, F, fullscreen"
-              "SUPER, M, exit"
+              "$mainMod, C, killactive"
+              "$mainMod, X, togglefloating"
+              "$mainMod, F, fullscreen"
+              "$mainMod, M, exit"
 
-              "SUPER, left, movefocus, l"
-              "SUPER, right, movefocus, r"
-              "SUPER, up, movefocus, u"
-              "SUPER, down, movefocus, d"
+              "$mainMod, left, movefocus, l"
+              "$mainMod, right, movefocus, r"
+              "$mainMod, up, movefocus, u"
+              "$mainMod, down, movefocus, d"
 
-              "SUPER, mouse_down, workspace, e+1"
-              "SUPER, mouse_up, workspace, e-1"
+              "$mainMod, mouse_down, workspace, e+1"
+              "$mainMod, mouse_up, workspace, e-1"
             ]
-            ++ builtins.map (n: "SUPER, ${
+            ++ builtins.map (n: "$mainMod, ${
               if n == 10
               then "0"
               else toString n
             }, workspace, ${toString n}") (lib.range 1 10)
-            ++ builtins.map (n: "SUPER SHIFT, ${
+            ++ builtins.map (n: "$mainMod SHIFT, ${
               if n == 10
               then "0"
               else toString n
             }, movetoworkspace, ${toString n}") (lib.range 1 10);
 
           bindm = [
-            "SUPER, mouse:272, movewindow"
-            "SUPER, mouse:273, resizewindow"
+            "$mainMod, mouse:272, movewindow"
+            "$mainMod, mouse:273, resizewindow"
           ];
 
           windowrule = [
-            "suppress_event, maximize, match:class .*"
-            "no_focus, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
+            "suppress_event maximize, match:class .*"
+            "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
 
             "idle_inhibit none, match:class .*"
             "idle_inhibit focus, match:content 1"
@@ -204,18 +210,25 @@ in {
 
     programs.hyprland = {
       enable = true;
+      withUWSM = false;
+      xwayland.enable = true;
       package = packageSet.hyprland;
       portalPackage = packageSet.xdg-desktop-portal-hyprland;
     };
 
-    hj.xdg.config.files."hypr/hyprland.conf" = {
-      generator = self.lib.generators.toHyprlang {
-        topCommandsPrefixes = [
-          "$"
-          "exec-once"
-        ];
-      };
-      value = cfg.settings;
+    # hj.xdg.config.files."hypr/hyprland.conf" = {
+    #   generator = self.lib.generators.toHyprlang {
+    #     topCommandsPrefixes = [
+    #       "$"
+    #       "exec-once"
+    #     ];
+    #   };
+    #   value = cfg.settings;
+    # };
+
+    hj.xdg.config.files."hypr/hyprland.conf".text = self.lib.generators.toHyprconf {
+      attrs = cfg.settings;
+      importantPrefixes = ["$" "exec-once" "bezier"];
     };
   };
 }

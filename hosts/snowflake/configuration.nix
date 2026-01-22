@@ -27,7 +27,14 @@
       };
       hyprland = {
         enable = true;
+        mainModKey = "ALT";
         anyrun.plugins.enableNixRun = true;
+      };
+    };
+
+    programs = {
+      utility = {
+        kitty.enable = true;
       };
     };
   };

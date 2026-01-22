@@ -21,7 +21,7 @@ in {
           generator = self.lib.generators.toHyprlang {};
           value = {
             splash = 0;
-            "monitor[]".path = "${config.modules.desktops.common.wallpaper}";
+            "wallpaper[]".path = "${config.modules.desktops.common.wallpaper}";
           };
         };
       };
