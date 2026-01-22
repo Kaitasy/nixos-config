@@ -1,0 +1,161 @@
+* {
+    all: unset; /* Get rid of user GTK theme */
+
+    --mono-font: "JetBrainsMono Nerd Font";
+    --icon-font: "Font Awesome 7 Free Solid";
+    --accent: #e2a6ff;
+    --fg: #bfc6ce;
+    --bg: rgba(16, 16, 20, 0.65);
+    --border: rgba(48, 48, 60, 0.6);
+    --sep: rgba(133, 137, 162, 0.6);
+    --inactive: rgba(133, 137, 162, 0.4);
+
+    --btn-bg: rgba(48, 48, 60, 0.5);
+    --btn-bg-active: rgba(30, 30, 40, 0.5);
+}
+
+.bar {
+    background-color: var(--bg);
+    margin: 0.6rem 0.6rem 8px 0.6rem;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.separator {
+    color: var(--sep);
+    font-family: var(--mono-font);
+    font-weight: 400;
+    font-size: 1.6rem;
+    margin: 0 6px;
+}
+
+.bar_left_modules,
+.bar_center_modules,
+.bar_right_modules {
+    margin: 0 14px;
+    min-height: 44px;
+}
+
+.time_widget,
+.datetime_widget {
+    font-family: var(--mono-font);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--fg);
+
+    .time_sep {
+        margin: 0 4px;
+        color: var(--sep);
+        font-size: 1rem;
+    }
+}
+
+.workspaces {
+    font-family: "Noto Sans CJK";
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--fg);
+
+    .inactive {
+        color: var(--inactive);
+    }
+
+    .workspaces_button:first-child {
+        margin-left: 2px;
+    }
+
+    .workspaces_button:last-child {
+        margin-right: 2px;
+    }
+}
+
+.icon_label {
+    font-family: var(--mono-font);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--fg);
+
+    .icon_label_icon {
+        font-family: var(--icon-font);
+        font-size: 1.1rem;
+    }
+}
+
+.network_usage {
+    .icon_label_label {
+        min-width: 5.5rem;
+    }
+}
+
+.notifications_button {
+    font-family: var(--icon-font);
+    font-size: 1.1rem;
+    color: var(--fg);
+}
+
+.notifications {
+    background-color: var(--bg);
+    margin: 0.6rem;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.6rem;
+
+    font-family: var(--mono-font);
+    font-size: 1rem;
+
+    .notifications_header {
+        min-width: 300px;
+        margin: 0.1rem;
+
+        .notifications_header_title,
+        .notifications_header_clear_button {
+            font-weight: 600;
+            color: var(--fg);
+            font-size: 1.1rem;
+            padding: 0.5rem;
+            border-radius: 12px;
+            transition: 100ms all;
+        }
+
+        .notifications_header_clear_button {
+            &:hover {
+                background-color: var(--btn-bg);
+            }
+
+            &:active {
+                background-color: var(--btn-bg-active);
+            }
+        }
+    }
+
+    .notifications_separator {
+        background-color: var(--border);
+        min-height: 2px;
+        margin: 0.5rem 1rem;
+    }
+}
+
+.launcher {
+    background-color: var(--bg);
+    margin: 0.6rem;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.6rem;
+
+    font-family: var(--mono-font);
+    font-size: 1.1rem;
+    color: var(--fg);
+
+    min-width: 200px;
+
+    .launcher_separator {
+        background-color: var(--border);
+        min-height: 2px;
+        margin: 0.5rem 1rem;
+    }
+
+    transition: 200ms all;
+}

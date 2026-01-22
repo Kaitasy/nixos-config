@@ -1,0 +1,34 @@
+{
+  description = "Kaitasy's NixOS config flake";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    systems.url = "github:nix-systems/default-linux";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    hjem.url = "github:feel-co/hjem";
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ignis = {
+      url = "github:ignis-sh/ignis";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = import inputs.systems;
+      imports = [
+        ./hosts
+        ./modules
+        ./parts
+      ];
+    };
+}
