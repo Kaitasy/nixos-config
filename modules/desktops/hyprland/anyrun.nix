@@ -15,13 +15,15 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    modules.services.user.anyrun.enable = true;
+
     modules.desktops.hyprland.settings = {
       layerrule = [
         "blur on, match:namespace anyrun"
         "ignore_alpha 0.6, match:namespace anyrun"
       ];
       bind = [
-        "$mainMod, R, exec, ${pkgs.anyrun} -c ~/.config/anyrun/hypr"
+        "$mainMod, R, exec, ${lib.getExe pkgs.anyrun} -c ~/.config/anyrun/hypr/"
       ];
     };
 
@@ -48,7 +50,6 @@ in {
       '';
 
       # TODO: Theme anyrun
-      # TODO: Enable anyrun daemon for faster startups
     };
   };
 }

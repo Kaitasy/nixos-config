@@ -1,6 +1,17 @@
 {
+  self',
+  config,
+  lib,
+  ...
+}: {
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Berlin";
+
+  # Gonna need this sooner or later
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 
   modules = {
     core = {
@@ -29,12 +40,39 @@
         enable = true;
         mainModKey = "ALT";
         anyrun.plugins.enableNixRun = true;
+
+        settings.bind = [
+          ", PRINT, exec, ${lib.getExe self'.packages.screenshot}"
+          "CTRL, F2, exec, ${lib.getExe self'.packages.gsr-replay-save}"
+        ];
       };
     };
 
     programs = {
       utility = {
         kitty.enable = true;
+      };
+    };
+
+    services = {
+      user.gsr-replay = {
+        enable = true;
+
+        video = {
+          source = "DP-1";
+          codec = "av1_10bit";
+        };
+
+        audio = {
+          sources = [
+            "app-inverse:mpd.PipeWire Output|app-inverse:Zen" # Everything except mpd and zen
+            "app:mpd.PipeWire Output|app:Zen" # mpd and zen
+            "default_input"
+          ];
+          bitrate = 320;
+        };
+
+        replay.outputDirectory = config.hj.directory + "/Videos";
       };
     };
   };

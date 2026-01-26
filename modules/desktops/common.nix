@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   inherit (lib) mkOption types;
 in {
   options.modules.desktops.common = {
@@ -78,5 +82,19 @@ in {
       });
       default = {};
     };
+  };
+
+  config = {
+    # Common packages
+    hj.packages = with pkgs; [
+      wl-clipboard
+      nh
+      curl
+      openssh
+      eza
+      zoxide
+    ];
+
+    services.dbus.implementation = "broker";
   };
 }

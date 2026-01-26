@@ -5,15 +5,13 @@
   config,
   ...
 }: let
-  cfg = config.modules.programs.wayland.hyprpaper;
+  cfg = config.modules.services.user.hyprpaper;
 in {
-  options.modules.programs.wayland.hyprpaper = {
+  options.modules.services.user.hyprpaper = {
     enable = lib.mkEnableOption "Hyprpaper";
   };
 
   config = lib.mkIf cfg.enable {
-    modules.desktops.hyprland.settings.exec-once = ["${lib.getExe pkgs.hyprpaper}"];
-
     hj = {
       packages = [pkgs.hyprpaper];
       xdg.config.files = {
@@ -24,6 +22,12 @@ in {
             "wallpaper[]".path = "${config.modules.desktops.common.wallpaper}";
           };
         };
+      };
+
+      systemd.services.hyprpaper = self.lib.services.mkGraphicalSessionService {
+        description = "Hyprpaper";
+        path = [pkgs.hyprpaper];
+        execStart = "${lib.getExe pkgs.hyprpaper}";
       };
     };
   };

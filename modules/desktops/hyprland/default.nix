@@ -31,7 +31,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    modules.programs.wayland.hyprpaper.enable = lib.mkDefault true;
+    modules.services.user.hyprpaper.enable = lib.mkDefault true;
 
     modules.desktops.hyprland = {
       ignis.enable = lib.mkDefault true;
@@ -61,6 +61,15 @@ in {
           (builtins.attrNames common.monitors));
         base = rec {
           "$mainMod" = cfg.mainModKey;
+
+          exec-once = [
+            "dbus-update-activation-environment --systemd --all"
+            "systemctl --user start hyprland-session.target"
+          ];
+
+          exec-shutdown = [
+            "systemctl --user stop hyprland-session.target"
+          ];
 
           input = {
             kb_layout = common.input.keyboardLayout;
@@ -216,19 +225,16 @@ in {
       portalPackage = packageSet.xdg-desktop-portal-hyprland;
     };
 
-    # hj.xdg.config.files."hypr/hyprland.conf" = {
-    #   generator = self.lib.generators.toHyprlang {
-    #     topCommandsPrefixes = [
-    #       "$"
-    #       "exec-once"
-    #     ];
-    #   };
-    #   value = cfg.settings;
-    # };
-
     hj.xdg.config.files."hypr/hyprland.conf".text = self.lib.generators.toHyprconf {
       attrs = cfg.settings;
       importantPrefixes = ["$" "exec-once" "bezier"];
+    };
+
+    systemd.user.targets.hyprland-session = {
+      description = "Hyprland session";
+      bindsTo = ["graphical-session.target"];
+      wants = ["graphical-session-pre.target"];
+      after = ["graphical-session-pre.target"];
     };
   };
 }
