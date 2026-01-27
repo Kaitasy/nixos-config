@@ -11,13 +11,13 @@ writeShellApplication {
   runtimeInputs = [grim slurp wl-clipboard];
   text = ''
     filename="$(date '+%y-%m-%d_%H%M%S').png"
-    path="$HOME/Pictures/Screenshots/$filename"
+    dir="$HOME/Pictures/Screenshots"
+    path="$dir/$filename"
 
-    if [ ! -d "$HOME/Pictures/Screenshots" ]; then
-      mkdir -p "$HOME/Pictures/Screenshots"
+    if [ ! -d "$dir" ]; then
+      mkdir -p "$dir"
     fi
 
-    sleep 0.1
     pidof slurp || (grim -t png -g "$(slurp -w 2)" "$path")
 
     # Copy screenshot to clipboard

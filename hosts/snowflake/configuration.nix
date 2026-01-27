@@ -38,6 +38,7 @@
       };
       hyprland = {
         enable = true;
+        useGit = true;
         mainModKey = "ALT";
         anyrun.plugins.enableNixRun = true;
 

@@ -7,6 +7,6 @@ writeShellApplication {
     # Get gpu-screen-recorder PID
     PID=$(systemctl --user show --property MainPID --value gsr-replay.service)
     # gpu-screen-recorder handles SIGUSR1 as "Save replay buffer"
-    kill -s SIGUSR1 $PID
+    kill -s SIGUSR1 "$PID"
   '';
 }

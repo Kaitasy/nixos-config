@@ -1,7 +1,7 @@
 {
   self,
   pkgs,
-  inputs,
+  inputs',
   lib,
   config,
   ...
@@ -10,7 +10,7 @@
   cfg = config.modules.desktops.hyprland;
   packageSet =
     if cfg.useGit
-    then inputs.hyprland.packages
+    then inputs'.hyprland.packages
     else pkgs;
 in {
   options.modules.desktops.hyprland = {
