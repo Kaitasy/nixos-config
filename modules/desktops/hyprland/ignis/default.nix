@@ -33,6 +33,10 @@ in {
       };
     };
 
+    fonts.packages = [
+      pkgs.font-awesome
+    ];
+
     modules.desktops.hyprland.settings = {
       exec-once = [
         "${lib.getExe pkg} init -c ~/.config/ignis/hypr/config.py"

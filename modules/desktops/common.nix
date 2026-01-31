@@ -111,10 +111,20 @@ in {
         openssh
         eza
         zoxide
+        bat
+        less
+
+        gnome-keyring
+        libsecret
       ]
       ++ [cfg.cursor.package];
 
     services.dbus.implementation = "broker";
+
+    # Required for some programs like Matrix clients and Trucky
+    # + Good to have
+    services.gnome.gnome-keyring.enable = true;
+    security.pam.services.login.enableGnomeKeyring = true;
 
     environment.sessionVariables = {
       XCURSOR_THEME = cfg.cursor.name;

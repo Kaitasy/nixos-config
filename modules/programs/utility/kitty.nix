@@ -18,7 +18,7 @@ in {
 
       xdg.config.files."kitty/kitty.conf".text = ''
         font_family ${fonts.monospace.name}
-        font_size ${toString fonts.monospace.preferredSize}
+        font_size 15
 
         background_opacity 0.65
         confirm_os_window_close 999

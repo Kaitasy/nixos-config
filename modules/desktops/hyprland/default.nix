@@ -234,9 +234,13 @@ in {
       portalPackage = packageSet.xdg-desktop-portal-hyprland;
     };
 
-    hj.xdg.config.files."hypr/hyprland.conf".text = self.lib.generators.toHyprconf {
-      attrs = cfg.settings;
-      importantPrefixes = ["$" "exec-once" "bezier"];
+    hj = {
+      xdg.config.files."hypr/hyprland.conf".text = self.lib.generators.toHyprconf {
+        attrs = cfg.settings;
+        importantPrefixes = ["$" "exec-once" "bezier"];
+      };
+
+      packages = with pkgs; [xdg-desktop-portal-gtk];
     };
 
     systemd.user.targets.hyprland-session = {
@@ -250,5 +254,10 @@ in {
       HYPRCURSOR_THEME = common.cursor.name;
       HYPRCURSOR_SIZE = common.cursor.size;
     };
+
+    xdg.portal.config.hyprland.default = [
+      "hyprland"
+      "gtk"
+    ];
   };
 }

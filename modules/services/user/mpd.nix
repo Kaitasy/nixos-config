@@ -13,6 +13,10 @@ in {
       type = types.either types.str types.path;
       default = config.hj.directory + "/Music";
     };
+    playlistDirectory = mkOption {
+      type = types.either types.str types.path;
+      default = config.hj.xdg.data.directory + "/mpd/playlists";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -22,6 +26,7 @@ in {
 
       settings = {
         music_directory = cfg.musicDirectory;
+        playlist_directory = cfg.playlistDirectory;
         audio_output = [
           {
             type = "pipewire";

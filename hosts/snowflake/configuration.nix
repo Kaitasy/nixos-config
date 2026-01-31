@@ -7,13 +7,29 @@
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Berlin";
 
-  # Gonna need this sooner or later
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+    amdgpu.initrd.enable = true;
+    new-lg4ff.enable = true;
+    wooting.enable = true;
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  fileSystems = {
+    "/mnt/bulk" = {
+      device = "/dev/disk/by-uuid/a3958db6-8197-4622-b50f-5cdba2cc14bc";
+      options = ["nofail"];
+    };
+
+    "/mnt/bulk2" = {
+      device = "/dev/disk/by-uuid/e025414b-c53a-409c-a652-5b12cbed363c";
+      options = ["nofail"];
+    };
+  };
 
   modules = {
     core = {
@@ -23,11 +39,20 @@
         enableNetworkManager = true;
         hostname = "snowflake";
       };
+
+      tuigreet = {
+        enable = true;
+        defaultCommand = "start-hyprland";
+      };
+    };
+
+    hardware = {
+      wlmouse.enableUdevRules = true;
     };
 
     desktops = {
       common = {
-        wallpaper = ../../wallpapers/__march_7th_and_evernight_honkai_and_1_more_drawn_by_akaguchi_35__e2c65d03baa094ce146dd92f33e563fe.jpg;
+        wallpaper = ../../wallpapers/__shian_synthesizer_v_drawn_by_mizhou_mzhu112646__079652ea128cecfe2ab3a0aee967f0eb.jpg;
         monitors.DP-1 = {
           description = "Microstep G274QPF-QD CC2H253801114";
           resolution = "2560x1440";
@@ -37,11 +62,12 @@
             bitdepth = 10;
           };
         };
+        input.sensitivity = -0.7;
       };
       hyprland = {
         enable = true;
         useGit = true;
-        mainModKey = "ALT";
+        mainModKey = "SUPER";
         anyrun.plugins.enableNixRun = true;
 
         settings.bind = [
@@ -58,10 +84,13 @@
 
       gaming = {
         steam.enable = true;
+        bs-manager.enable = true;
+        trucky.enable = true;
       };
 
       media = {
         mpv.enable = true;
+        rmpc.enable = true;
       };
 
       utility = {
@@ -73,11 +102,19 @@
       web = {
         zen.enable = true;
       };
+
+      virtualization.winboat.enable = true;
     };
 
     services = {
+      system = {
+        jellyfin.enable = true;
+        searxng.enable = true;
+      };
+
       user = {
         mpd.enable = true;
+        mpdris.enable = true;
 
         gsr-replay = {
           enable = true;

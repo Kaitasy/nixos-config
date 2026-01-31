@@ -21,8 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixcord.url = "github:FlameFlag/nixcord";
-
     schizofox.url = "github:schizofox/schizofox";
 
     zen = {
@@ -32,6 +30,11 @@
 
     nvf = {
       url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    tuigreet = {
+      url = "github:notashelf/tuigreet";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

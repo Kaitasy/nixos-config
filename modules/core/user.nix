@@ -38,6 +38,19 @@ in {
       ];
       initialPassword = "1234";
       uid = 1000;
+      shell = pkgs.fish;
+    };
+
+    programs = {
+      starship.enable = true;
+      fish = {
+        enable = true;
+        shellInit = "set -u fish_greeting";
+        promptInit = "${lib.getExe pkgs.starship} init fish | source";
+        shellAliases = {
+          ls = "${lib.getExe pkgs.eza} --icons -hS";
+        };
+      };
     };
   };
 }

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Categories=Games
+Exec=trucky --no-sandbox
+Icon=trucky-electron
+Name=Trucky
+Type=Application
