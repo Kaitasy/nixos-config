@@ -20,6 +20,20 @@
       url = "github:ignis-sh/ignis";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixcord.url = "github:FlameFlag/nixcord";
+
+    schizofox.url = "github:schizofox/schizofox";
+
+    zen = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

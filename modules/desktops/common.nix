@@ -1,9 +1,11 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
   inherit (lib) mkOption types;
+  cfg = config.modules.desktops.common;
 in {
   options.modules.desktops.common = {
     wallpaper = mkOption {
@@ -20,6 +22,21 @@ in {
         type = types.str;
         default = "30303c";
         description = "Used for borders on tilers, launchers, dunst, etc.";
+      };
+    };
+
+    cursor = {
+      name = mkOption {
+        type = types.str;
+        default = "Bibata-Modern-Classic";
+      };
+      package = mkOption {
+        type = types.package;
+        default = pkgs.bibata-cursors;
+      };
+      size = mkOption {
+        type = types.int;
+        default = 24;
       };
     };
 
@@ -86,15 +103,22 @@ in {
 
   config = {
     # Common packages
-    hj.packages = with pkgs; [
-      wl-clipboard
-      nh
-      curl
-      openssh
-      eza
-      zoxide
-    ];
+    hj.packages = with pkgs;
+      [
+        wl-clipboard
+        nh
+        curl
+        openssh
+        eza
+        zoxide
+      ]
+      ++ [cfg.cursor.package];
 
     services.dbus.implementation = "broker";
+
+    environment.sessionVariables = {
+      XCURSOR_THEME = cfg.cursor.name;
+      XCURSOR_SIZE = cfg.cursor.size;
+    };
   };
 }

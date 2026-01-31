@@ -37,6 +37,7 @@ in {
         "video"
       ];
       initialPassword = "1234";
+      uid = 1000;
     };
   };
 }

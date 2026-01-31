@@ -1,6 +1,6 @@
 {
+  pkgs,
   self',
-  config,
   lib,
   ...
 }: {
@@ -12,6 +12,8 @@
     enable = true;
     binfmt = true;
   };
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   modules = {
     core = {
@@ -50,30 +52,47 @@
     };
 
     programs = {
+      development.neovim.enable = true;
+
+      social.discord.enable = true;
+
+      gaming = {
+        steam.enable = true;
+      };
+
+      media = {
+        mpv.enable = true;
+      };
+
       utility = {
         kitty.enable = true;
+        playerctl.enable = true;
+        pwvucontrol.enable = true;
+      };
+
+      web = {
+        zen.enable = true;
       };
     };
 
     services = {
-      user.gsr-replay = {
-        enable = true;
+      user = {
+        mpd.enable = true;
 
-        video = {
-          source = "DP-1";
-          codec = "av1_10bit";
+        gsr-replay = {
+          enable = true;
+
+          video.codec = "av1_10bit";
+
+          audio = {
+            sources = [
+              "app-inverse:mpd.PipeWire Output|app-inverse:Zen" # Everything except mpd and zen
+              "app:mpd.PipeWire Output|app:Zen" # mpd and zen
+              "default_input"
+            ];
+            bitrate = 320;
+          };
         };
-
-        audio = {
-          sources = [
-            "app-inverse:mpd.PipeWire Output|app-inverse:Zen" # Everything except mpd and zen
-            "app:mpd.PipeWire Output|app:Zen" # mpd and zen
-            "default_input"
-          ];
-          bitrate = 320;
-        };
-
-        replay.outputDirectory = config.hj.directory + "/Videos";
       };
     };
   };

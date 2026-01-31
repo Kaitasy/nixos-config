@@ -14,6 +14,10 @@
       type = lib.types.package;
       default = package;
     };
+    preferredSize = lib.mkOption {
+      type = lib.types.int;
+      default = 12;
+    };
   };
 in {
   options.modules.core.fonts = {

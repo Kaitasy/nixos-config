@@ -199,6 +199,15 @@ in {
             "$mainMod, mouse:273, resizewindow"
           ];
 
+          bindel = let
+            wpctl = "${pkgs.wireplumber}/bin/wpctl";
+          in [
+            ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+            ", XF86AudioLowerVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+            ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            ", XF86AudioMicMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+          ];
+
           windowrule = [
             "suppress_event maximize, match:class .*"
             "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
@@ -235,6 +244,11 @@ in {
       bindsTo = ["graphical-session.target"];
       wants = ["graphical-session-pre.target"];
       after = ["graphical-session-pre.target"];
+    };
+
+    environment.sessionVariables = {
+      HYPRCURSOR_THEME = common.cursor.name;
+      HYPRCURSOR_SIZE = common.cursor.size;
     };
   };
 }
