@@ -86,6 +86,10 @@
         steam.enable = true;
         bs-manager.enable = true;
         trucky.enable = true;
+        mangohud.enable = true;
+        prismlauncher.enable = true;
+        gamescope.enable = true;
+        gamemode.enable = true;
       };
 
       media = {
@@ -97,6 +101,8 @@
         kitty.enable = true;
         playerctl.enable = true;
         pwvucontrol.enable = true;
+        btop.enable = true;
+        superfile.enable = true;
       };
 
       web = {
@@ -104,6 +110,8 @@
       };
 
       virtualization.winboat.enable = true;
+
+      vr.wivrn.enable = true;
     };
 
     services = {
