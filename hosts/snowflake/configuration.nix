@@ -29,6 +29,11 @@
       device = "/dev/disk/by-uuid/e025414b-c53a-409c-a652-5b12cbed363c";
       options = ["nofail"];
     };
+
+    "/mnt/ssd" = {
+      device = "/dev/disk/by-uuid/35f5796f-abf7-454e-935c-661606069483";
+      options = ["nofail"];
+    };
   };
 
   modules = {
