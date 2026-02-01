@@ -14,7 +14,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     modules.desktops.hyprland.settings = {
-      exec-once = ["${lib.getExe pkgs.dunst} -conf ~/.config/dunst/dunstrc_hypr"];
+      exec-once = ["${lib.getExe pkgs.dunst} -conf ~/.config/dunst/dunstrc"];
       layerrule = [
         "blur on, match:namespace notifications"
         "ignore_alpha 0.6, match:namespace notifications"
@@ -24,7 +24,7 @@ in {
     hj = {
       packages = [pkgs.dunst];
 
-      xdg.config.files."dunst/dunstrc_hypr" = {
+      xdg.config.files."dunst/dunstrc" = {
         generator = lib.generators.toINI {};
         value = {
           global = {
@@ -41,25 +41,26 @@ in {
           };
 
           urgency_low = {
-            background = "#121212a5";
-            foreground = "#bfc6ce";
-            highlight = "#${common.style.accentColor}";
+            # INI is a fucking retarded format and so is dunst's parser
+            background = "\"#121212a5\"";
+            foreground = "\"#bfc6ce\"";
+            highlight = "\"#${common.style.accentColor}\"";
             timeout = 5;
           };
 
           urgency_normal = {
-            background = "#121212a5";
-            foreground = "#bfc6ce";
-            frame_color = "#${common.style.accentColor}"; # idk what the difference between the two is maybe i should read the docs
-            highlight = "#${common.style.accentColor}";
+            background = "\"#121212a5\"";
+            foreground = "\"#bfc6ce\"";
+            frame_color = "\"#${common.style.accentColor}\""; # idk what the difference between the two is maybe i should read the docs
+            highlight = "\"#${common.style.accentColor}\"";
             timeout = 5;
           };
 
           urgency_critical = {
-            background = "#121212a5";
-            foreground = "#bfc6ce";
-            frame_color = "#fc7b81";
-            highlight = "#d54e53";
+            background = "\"#121212a5\"";
+            foreground = "\"#bfc6ce\"";
+            frame_color = "\"#fc7b81\"";
+            highlight = "\"#d54e53\"";
             timeout = 0;
           };
         };

@@ -129,6 +129,7 @@ in {
     environment.sessionVariables = {
       XCURSOR_THEME = cfg.cursor.name;
       XCURSOR_SIZE = cfg.cursor.size;
+      XCURSOR_PATH = ["${cfg.cursor.package}/share/icons"];
     };
   };
 }

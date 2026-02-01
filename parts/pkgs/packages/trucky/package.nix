@@ -17,7 +17,7 @@ in
       name = "trucky-appimage";
 
       outputHashMode = "recursive";
-      outputHash = "sha256-sm9BuXtQojYGMbI7bATrHR5wYRGYCdU2rDrc/vRLfm8=";
+      outputHash = "sha256-ItDEjMu5UMrIy5/xDdSpqBDtSdjZwwyzXIyJPus2luA=";
 
       nativeBuildInputs = [curl cacert];
       buildPhase = ''

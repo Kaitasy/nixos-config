@@ -11,6 +11,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    modules.desktops.hyprland.settings.bind = [
+      "$mainMod, S, exec, ${lib.getExe pkgs.kitty} ${lib.getExe pkgs.rmpc}"
+    ];
+
     hj = {
       packages = with pkgs; [rmpc cava];
 

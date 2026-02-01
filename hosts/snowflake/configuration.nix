@@ -74,6 +74,10 @@
         useGit = true;
         mainModKey = "SUPER";
         anyrun.plugins.enableNixRun = true;
+        hypridle = {
+          enable = true;
+          screenSleepDelay = 180;
+        };
 
         settings.bind = [
           ", PRINT, exec, ${lib.getExe self'.packages.screenshot}"
@@ -83,7 +87,10 @@
     };
 
     programs = {
-      development.neovim.enable = true;
+      development = {
+        neovim.enable = true;
+        git.enable = true;
+      };
 
       social.discord.enable = true;
 
