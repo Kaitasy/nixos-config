@@ -38,17 +38,30 @@ in {
       ];
       initialPassword = "1234";
       uid = 1000;
-      shell = pkgs.fish;
+      shell = pkgs.zsh;
     };
 
     programs = {
-      starship.enable = true;
-      fish = {
+      # fish = {
+      #   enable = true;
+      #   shellInit = "set -u fish_greeting";
+      #   promptInit = "${lib.getExe pkgs.starship} init fish | source";
+      #   shellAliases = {
+      #     ls = "${lib.getExe pkgs.eza} --icons -hS";
+      #   };
+      # };
+      zsh = {
         enable = true;
-        shellInit = "set -u fish_greeting";
-        promptInit = "${lib.getExe pkgs.starship} init fish | source";
         shellAliases = {
           ls = "${lib.getExe pkgs.eza} --icons -hS";
+        };
+        ohMyZsh = {
+          enable = true;
+          plugins = [
+            "git"
+            "rust"
+          ];
+          theme = "robbyrussell";
         };
       };
     };

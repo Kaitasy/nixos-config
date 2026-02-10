@@ -11,6 +11,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    hj.packages = [pkgs.android-tools];
+
     services.wivrn = {
       enable = true;
       autoStart = true;

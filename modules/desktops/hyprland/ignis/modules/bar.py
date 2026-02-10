@@ -11,7 +11,7 @@ from widgets.workspaces import HyprlandWorkspaces
 def Bar(monitor: int) -> widgets.Window:
     return widgets.Window(
         monitor=monitor,
-        namespace="shell-bar",
+        namespace=f"shell-bar-{monitor}",
         exclusivity="exclusive",
         layer="bottom",
         anchor=["left", "top", "right"],

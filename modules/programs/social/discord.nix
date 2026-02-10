@@ -12,10 +12,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     hj.packages = [
-      (pkgs.discord.override {
-        withOpenASAR = true;
-        withVencord = true;
-      })
+      # (pkgs.discord.override {
+      #   withOpenASAR = true;
+      #   withVencord = true;
+      # })
+      pkgs.vesktop
     ];
   };
 }

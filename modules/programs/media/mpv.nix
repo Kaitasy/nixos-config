@@ -12,5 +12,18 @@ in {
 
   config = lib.mkIf cfg.enable {
     hj.packages = [pkgs.mpv];
+
+    xdg.mime.defaultApplications = builtins.listToAttrs (builtins.map (schema: {
+        name = schema;
+        value = "mpv.desktop";
+      }) [
+        "video/mp4"
+        "video/x-matroska"
+        "video/webm"
+        "audio/mpeg"
+        "audio/flac"
+        "audio/wav"
+        "audio/aac"
+      ]);
   };
 }

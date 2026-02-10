@@ -5,19 +5,19 @@
   curl,
   cacert,
 }: let
-  version = "2026-01-31";
+  version = "2026-02-09";
   pname = "trucky";
 
   srcUrl = "https://client-download.truckyapp.com/linux/latest/Trucky.AppImage";
 in
-  appimageTools.wrapType2 rec {
+  appimageTools.wrapType2 {
     inherit pname version;
 
     src = stdenv.mkDerivation {
       name = "trucky-appimage";
 
       outputHashMode = "recursive";
-      outputHash = "sha256-ItDEjMu5UMrIy5/xDdSpqBDtSdjZwwyzXIyJPus2luA=";
+      outputHash = "sha256-Ew6obvhLbPwcTU90wdWs0wxa7mS2U7U55vHtbT3sDJQ=";
 
       nativeBuildInputs = [curl cacert];
       buildPhase = ''

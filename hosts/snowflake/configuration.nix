@@ -29,11 +29,6 @@
       device = "/dev/disk/by-uuid/e025414b-c53a-409c-a652-5b12cbed363c";
       options = ["nofail"];
     };
-
-    "/mnt/ssd" = {
-      device = "/dev/disk/by-uuid/35f5796f-abf7-454e-935c-661606069483";
-      options = ["nofail"];
-    };
   };
 
   modules = {
@@ -58,13 +53,25 @@
     desktops = {
       common = {
         wallpaper = ../../wallpapers/__shian_synthesizer_v_drawn_by_mizhou_mzhu112646__079652ea128cecfe2ab3a0aee967f0eb.jpg;
-        monitors.DP-1 = {
-          description = "Microstep G274QPF-QD CC2H253801114";
-          resolution = "2560x1440";
-          refreshRate = 165;
-          cm = {
-            primaries = "srgb";
-            bitdepth = 10;
+        monitors = {
+          DP-1 = {
+            description = "Microstep G274QPF-QD CC2H253801114";
+            resolution = "2560x1440";
+            refreshRate = 165;
+            cm = {
+              primaries = "srgb";
+              bitdepth = 10;
+            };
+          };
+          HDMI-A-1 = {
+            description = "Samsung Electric Company U28E590 HTPJ708954";
+            resolution = "2560x1440";
+            x = -2560;
+            refreshRate = 60;
+            cm = {
+              primaries = "srgb";
+              bitdepth = 10;
+            };
           };
         };
         input.sensitivity = -0.7;
@@ -79,10 +86,19 @@
           screenSleepDelay = 180;
         };
 
-        settings.bind = [
-          ", PRINT, exec, ${lib.getExe self'.packages.screenshot}"
-          "CTRL, F2, exec, ${lib.getExe self'.packages.gsr-replay-save}"
-        ];
+        settings = {
+          bind = [
+            ", PRINT, exec, ${lib.getExe self'.packages.screenshot} region"
+            "CTRL, PRINT, exec, ${lib.getExe self'.packages.screenshot} monitor"
+            "CTRL, F2, exec, ${lib.getExe self'.packages.gsr-replay-save}"
+            "$mainMod CTRL, 1, movecurrentworkspacetomonitor, DP-1"
+            "$mainMod CTRL, 2, movecurrentworkspacetomonitor, HDMI-A-1"
+          ];
+          workspace = [
+            "1, monitor:HDMI-A-1, default:true"
+            "r[2-9], monitor:DP-1, default:true"
+          ];
+        };
       };
     };
 
@@ -102,6 +118,7 @@
         prismlauncher.enable = true;
         gamescope.enable = true;
         gamemode.enable = true;
+        truckersmp-cli.enable = true;
       };
 
       media = {
@@ -119,32 +136,54 @@
 
       web = {
         zen.enable = true;
+        qbittorrent.enable = true;
       };
 
       virtualization.winboat.enable = true;
 
       vr.wivrn.enable = true;
+
+      flatpak = {
+        enable = true;
+
+        gaming = {
+          hytale = true;
+          sober = true;
+        };
+
+        creativity.kdenlive = true;
+
+        utility = {
+          bottles = true;
+          gradia = true;
+        };
+      };
     };
 
     services = {
       system = {
         jellyfin.enable = true;
         searxng.enable = true;
+        mullvad.enable = true;
       };
 
       user = {
         mpd.enable = true;
         mpdris.enable = true;
+        jellyfin-mpv-shim.enable = true;
 
         gsr-replay = {
           enable = true;
 
-          video.codec = "av1_10bit";
+          video = {
+            codec = "av1_10bit";
+            bitrate = 20000;
+          };
 
           audio = {
             sources = [
-              "app-inverse:mpd.PipeWire Output|app-inverse:Zen" # Everything except mpd and zen
-              "app:mpd.PipeWire Output|app:Zen" # mpd and zen
+              "app-inverse:mpd.PipeWire Output|app-inverse:Zen|app-inverse:mpv" # Everything except mpd, zen, and mpv
+              "app:mpd.PipeWire Output|app:Zen|app:mpv" # mpd, zen, and mpv
               "default_input"
             ];
             bitrate = 320;

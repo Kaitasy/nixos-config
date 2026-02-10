@@ -31,7 +31,7 @@ in {
 
       systemd.services.hypridle = self.lib.services.mkGraphicalSessionService {
         description = "Hypridle";
-        path = [pkgs.hypridle];
+        path = [pkgs.hypridle config.programs.hyprland.package];
         execStart = lib.getExe pkgs.hypridle;
       };
     };

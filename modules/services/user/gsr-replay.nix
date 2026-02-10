@@ -24,7 +24,7 @@ in {
           "webm"
           "flv"
         ];
-        default = "mp4";
+        default = "mkv";
       };
       framerate = mkOption {
         type = types.int;

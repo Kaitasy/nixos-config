@@ -21,7 +21,7 @@ in {
       extensions = {
         enableDefaultExtensions = true;
         simplefox.enable = true;
-        darkreader.enable = true;
+        # darkreader.enable = true;
       };
     };
   };

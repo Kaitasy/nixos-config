@@ -28,6 +28,7 @@ in {
         generator = lib.generators.toINI {};
         value = {
           global = {
+            monitor = "DP-1";
             origin = "top-center";
             offset = "(0, 0)";
             width = "(100, 500)";
