@@ -23,7 +23,7 @@ in {
         json = {
           bitrate = 150000000;
           application = [
-            (pkgs.writeShellApplication "wayvr-wrapper" "${lib.getExe inputs.nixpkgs-wayvr.legacyPackages."x86_64-linux".wayvr}")
+            (pkgs.writeShellScriptBin "wayvr-wrapper" "${lib.getExe inputs.nixpkgs-wayvr.legacyPackages."x86_64-linux".wayvr}")
           ];
         };
       };
