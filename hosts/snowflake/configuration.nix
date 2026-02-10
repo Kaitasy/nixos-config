@@ -171,6 +171,20 @@
         mpd.enable = true;
         mpdris.enable = true;
         jellyfin-mpv-shim.enable = true;
+        easyeffects = {
+          enable = true;
+          presets.output = {
+            "DT-770 Pro (80 Ohm)" = import ./easyeffects_dt770.nix;
+          };
+          autoload.output = [
+            {
+              device = "alsa_output.usb-Focusrite_Scarlett_2i2_USB_Y81D0Z1157634E-00.HiFi__Line__sink";
+              device-description = "Scarlett 2i2 3rd Gen Headphones / Line 1-2";
+              device-profile = "Headphones / Line 1-2";
+              preset-name = "DT-770 Pro (80 Ohm)";
+            }
+          ];
+        };
 
         gsr-replay = {
           enable = true;
