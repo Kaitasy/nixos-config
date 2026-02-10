@@ -39,6 +39,10 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    # I'm impatient + WiVRn 26.2 is a huge improvement tracking-wise
+    nixpkgs-wivrn.url = "github:NixOS/nixpkgs?ref=pull/488408/head";
+    nixpkgs-wayvr.url = "github:NixOS/nixpkgs?ref=pull/488509/head";
   };
 
   outputs = inputs:

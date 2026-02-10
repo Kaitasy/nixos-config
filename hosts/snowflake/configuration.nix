@@ -174,7 +174,8 @@
         easyeffects = {
           enable = true;
           presets.output = {
-            "DT-770 Pro (80 Ohm)" = import ./easyeffects_dt770.nix;
+            "DT-770 Pro (80 Ohm)" = import ./easyeffects_dt770.nix; # Desktop
+            "SE215" = import ./easyeffects_se215.nix; # In-ears for VR
           };
           autoload.output = [
             {
@@ -182,6 +183,12 @@
               device-description = "Scarlett 2i2 3rd Gen Headphones / Line 1-2";
               device-profile = "Headphones / Line 1-2";
               preset-name = "DT-770 Pro (80 Ohm)";
+            }
+            {
+              device = "wivrn.sink";
+              device-description = "WiVRn";
+              device-profile = "";
+              preset-name = "SE215";
             }
           ];
         };

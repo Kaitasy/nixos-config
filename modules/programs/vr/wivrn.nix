@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   config,
@@ -15,12 +16,15 @@ in {
 
     services.wivrn = {
       enable = true;
+      package = inputs.nixpkgs-wivrn.legacyPackages."x86_64-linux".wivrn;
       autoStart = true;
       config = {
         enable = true;
         json = {
           bitrate = 150000000;
-          application = [pkgs.wayvr];
+          application = [
+            (pkgs.writeShellApplication "wayvr-wrapper" "${lib.getExe inputs.nixpkgs-wayvr.legacyPackages."x86_64-linux".wayvr}")
+          ];
         };
       };
     };

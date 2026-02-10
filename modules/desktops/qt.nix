@@ -17,7 +17,7 @@
             icon_theme = "Adwaita-Dark";
             custom_palette = true;
             standard_dialogs = "xdgdesktopportal";
-            style = "Adwaita-Dark";
+            style = "Breeze";
           };
           Fonts = {
             fixed = ''"monospace,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"'';
@@ -35,8 +35,7 @@
             unlink $out/share/applications/qt6ct.desktop
           '';
         })
-        adwaita-qt
-        adwaita-qt6
+        kdePackages.breeze
       ];
     };
   };

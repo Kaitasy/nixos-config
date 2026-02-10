@@ -727,6 +727,38 @@
         "type": "github"
       }
     },
+    "nixpkgs-wayvr": {
+      "locked": {
+        "lastModified": 1770588880,
+        "narHash": "sha256-CUnybK/FVMlPW3IEFzt4/nKistoXmPdketzUava4X3o=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "10de3cd61e76921c7b2821baa41fbd57f28be6fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "pull/488509/head",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-wivrn": {
+      "locked": {
+        "lastModified": 1770578944,
+        "narHash": "sha256-dXj2898T1TvG0dGs+TjguaspLG2QRvHWFa+j0dR3Yf0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a2b56160f376bea4f22c3c94f1e217a5131132f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "pull/488408/head",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1770562336,
@@ -815,6 +847,8 @@
         "ignis": "ignis",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-wayvr": "nixpkgs-wayvr",
+        "nixpkgs-wivrn": "nixpkgs-wivrn",
         "nvf": "nvf",
         "schizofox": "schizofox",
         "systems": "systems_5",
