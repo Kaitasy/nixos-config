@@ -42,8 +42,7 @@ in {
         "${lib.getExe pkg} init -c ~/.config/ignis/hypr/config.py"
       ];
       layerrule = [
-        "blur on, match:namespace shell-bar-\\d+"
-        "ignore_alpha 0.6, match:namespace shell-bar-\\d+"
+        "blur on, blur_popups true, ignore_alpha 0.6, match:namespace shell-bar-\\d+"
       ];
     };
   };

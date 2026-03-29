@@ -159,3 +159,31 @@
 
     transition: 200ms all;
 }
+
+popover.menu > contents {
+    background-color: var(--bg);
+    margin: 0.6rem 0.6rem 8px 0.6rem;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+}
+
+popover.menu modelbutton {
+    color: var(--fg);
+    font-family: var(--mono-font);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+popover.menu modelbutton:hover {
+    background-color: var(--btn-bg-active);
+}
+
+popover.menu > contents separator {
+    background-color: var(--border);
+    min-height: 1px;
+    margin: 6px;
+}

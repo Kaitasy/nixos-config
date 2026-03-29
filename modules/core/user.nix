@@ -30,6 +30,7 @@ in {
     };
 
     users.users.${cfg.username} = {
+      group = cfg.username;
       isNormalUser = true;
       extraGroups = [
         "wheel"
@@ -38,18 +39,19 @@ in {
       ];
       initialPassword = "1234";
       uid = 1000;
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
     };
+    users.groups.${cfg.username} = {};
 
     programs = {
-      # fish = {
-      #   enable = true;
-      #   shellInit = "set -u fish_greeting";
-      #   promptInit = "${lib.getExe pkgs.starship} init fish | source";
-      #   shellAliases = {
-      #     ls = "${lib.getExe pkgs.eza} --icons -hS";
-      #   };
-      # };
+      fish = {
+        enable = true;
+        shellInit = "set -u fish_greeting";
+        promptInit = "${lib.getExe pkgs.starship} init fish | source";
+        shellAliases = {
+          ls = "${lib.getExe pkgs.eza} --icons -hS";
+        };
+      };
       zsh = {
         enable = true;
         shellAliases = {

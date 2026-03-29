@@ -1,8 +1,8 @@
 from ignis import widgets
 
-from modules.notifications import NotificationTray
 from widgets.network import NetworkUsageWidget, VpnStatusWidget
 from widgets.separator import Separator
+from widgets.sys_tray import SystemTray
 from widgets.system import CpuTemperatureWidget, CpuUsageWidget, MemoryUsageWidget
 from widgets.time import DateTimeWidget, TimeWidget
 from widgets.workspaces import HyprlandWorkspaces
@@ -55,13 +55,7 @@ def Bar(monitor: int) -> widgets.Window:
                     CpuTemperatureWidget(),
                     Separator(),
                     MemoryUsageWidget(),
-                    Separator(),
-                    widgets.Button(
-                        label="",
-                        css_classes=["notifications_button"],
-                        style="margin-right: 8px;",
-                        on_click=lambda x: NotificationTray(monitor),
-                    ),
+                    SystemTray(include_separator=True),
                 ],
             ),
         ),

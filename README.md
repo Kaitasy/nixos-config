@@ -1,6 +1,6 @@
 # My NixOS config flake
 
-Largely incomplete. Rewrite no.6
+Rewrite no.6
 
 ### Thanks to
 - [fazzi](https://gitlab.com/fazzi/nixohess) for inspiring the config structure

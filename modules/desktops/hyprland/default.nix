@@ -36,7 +36,6 @@ in {
     modules.desktops.hyprland = {
       ignis.enable = lib.mkDefault true;
       dunst.enable = lib.mkDefault true;
-      anyrun.enable = lib.mkDefault true;
 
       # actual defaults
       # this is such a mess
@@ -124,7 +123,8 @@ in {
             shadow = {
               enabled = true;
               range = 10;
-              render_power = 3;
+              render_power = 2;
+              color = "rgba(00000044)";
             };
 
             blur = {
@@ -137,6 +137,11 @@ in {
               brightness = 1;
               vibrancy = 0.3;
             };
+          };
+
+          ecosystem = {
+            no_update_news = true;
+            no_donation_nag = true;
           };
 
           animations = {
@@ -154,7 +159,7 @@ in {
               "global, 1, 30, default"
               "border, 1, 3.39, easeOutQuint"
               "windows, 1, 4.79, easeOutQuint"
-              "windowsIn, 1, 4.1, easeOutQuint"
+              "windowsIn, 1, 3.5, easeOutQuint"
               "windowsOut, 1, 1.49, linear, popin 87%"
               "fadeIn, 1, 1.73, almostLinear"
               "fadeOut, 1, 1.46, almostLinear"
@@ -162,8 +167,8 @@ in {
               "layers, 1, 3.81, easeOutQuint"
               "layersIn, 1, 4, easeOutQuint, fade"
               "layersOut, 1, 1.5, linear, fade"
-              "fadeLayersIn, 1, 1.79, almostLinear"
-              "fadeLayersOut, 1, 1.39, almostLinear"
+              "fadeLayersIn, 1, 1.1, almostLinear"
+              "fadeLayersOut, 1, 1.0, almostLinear"
               "workspaces, 1, 3.25, easeOutQuint, slide"
             ];
           };
@@ -240,7 +245,7 @@ in {
         importantPrefixes = ["$" "exec-once" "bezier"];
       };
 
-      packages = with pkgs; [xdg-desktop-portal-gtk];
+      packages = with pkgs; [xdg-desktop-portal-gtk hyprshutdown];
     };
 
     systemd.user.targets.hyprland-session = {

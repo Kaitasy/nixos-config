@@ -1,5 +1,5 @@
 {
-  description = "Kaitasy's NixOS config flake";
+  description = "starlm's NixOS config flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -23,11 +23,6 @@
 
     schizofox.url = "github:schizofox/schizofox";
 
-    zen = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,9 +35,21 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
-    # I'm impatient + WiVRn 26.2 is a huge improvement tracking-wise
-    nixpkgs-wivrn.url = "github:NixOS/nixpkgs?ref=pull/488408/head";
-    nixpkgs-wayvr.url = "github:NixOS/nixpkgs?ref=pull/488509/head";
+    qtengine = {
+      url = "github:kosslan/qtengine";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    elephant = {
+      url = "github:abenz1267/elephant";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.elephant.follows = "elephant";
+    };
   };
 
   outputs = inputs:

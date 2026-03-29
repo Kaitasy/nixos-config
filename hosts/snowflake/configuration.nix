@@ -20,20 +20,25 @@
   };
 
   fileSystems = {
-    "/mnt/bulk" = {
-      device = "/dev/disk/by-uuid/a3958db6-8197-4622-b50f-5cdba2cc14bc";
+    "/mnt/big_bulk" = {
+      device = "/dev/disk/by-uuid/0b461315-db7e-4ecd-94c9-fe7df1fd405a";
       options = ["nofail"];
     };
 
-    "/mnt/bulk2" = {
-      device = "/dev/disk/by-uuid/e025414b-c53a-409c-a652-5b12cbed363c";
+    "/mnt/little_bulk" = {
+      device = "/dev/disk/by-uuid/0a6f9446-fcb8-4da7-ad78-0f4b04b07f77";
+      options = ["nofail"];
+    };
+
+    "/mnt/ssd" = {
+      device = "/dev/disk/by-uuid/70641405-70a7-4062-b2c6-21eca8dc654a";
       options = ["nofail"];
     };
   };
 
   modules = {
     core = {
-      user.username = "kaitasy";
+      user.username = "starlm";
 
       networking = {
         enableNetworkManager = true;
@@ -52,7 +57,7 @@
 
     desktops = {
       common = {
-        wallpaper = ../../wallpapers/__shian_synthesizer_v_drawn_by_mizhou_mzhu112646__079652ea128cecfe2ab3a0aee967f0eb.jpg;
+        wallpaper = ../../wallpapers/1726691593523505.jpg;
         monitors = {
           DP-1 = {
             description = "Microstep G274QPF-QD CC2H253801114";
@@ -78,9 +83,8 @@
       };
       hyprland = {
         enable = true;
-        useGit = true;
+        useGit = false;
         mainModKey = "SUPER";
-        anyrun.plugins.enableNixRun = true;
         hypridle = {
           enable = true;
           screenSleepDelay = 180;
@@ -113,17 +117,15 @@
       gaming = {
         steam.enable = true;
         bs-manager.enable = true;
-        trucky.enable = true;
         mangohud.enable = true;
         prismlauncher.enable = true;
         gamescope.enable = true;
         gamemode.enable = true;
-        truckersmp-cli.enable = true;
       };
 
       media = {
         mpv.enable = true;
-        rmpc.enable = true;
+        feishin.enable = true;
       };
 
       utility = {
@@ -131,27 +133,19 @@
         playerctl.enable = true;
         pwvucontrol.enable = true;
         btop.enable = true;
-        superfile.enable = true;
+        dolphin.enable = true;
+        walker.enable = true;
       };
 
       web = {
-        zen.enable = true;
+        librewolf.enable = true;
         qbittorrent.enable = true;
       };
-
-      virtualization.winboat.enable = true;
 
       vr.wivrn.enable = true;
 
       flatpak = {
         enable = true;
-
-        gaming = {
-          hytale = true;
-          sober = true;
-        };
-
-        creativity.kdenlive = true;
 
         utility = {
           bottles = true;
@@ -165,11 +159,13 @@
         jellyfin.enable = true;
         searxng.enable = true;
         mullvad.enable = true;
+        navidrome = {
+          enable = true;
+          musicFolder = "/mnt/big_bulk/Music";
+        };
       };
 
       user = {
-        mpd.enable = true;
-        mpdris.enable = true;
         jellyfin-mpv-shim.enable = true;
         easyeffects = {
           enable = true;
@@ -203,8 +199,8 @@
 
           audio = {
             sources = [
-              "app-inverse:mpd.PipeWire Output|app-inverse:Zen|app-inverse:mpv" # Everything except mpd, zen, and mpv
-              "app:mpd.PipeWire Output|app:Zen|app:mpv" # mpd, zen, and mpv
+              "app-inverse:mpd.PipeWire Output|app-inverse:LibreWolf|app-inverse:mpv" # Everything except mpd, zen, and mpv
+              "app:mpd.PipeWire Output|app:LibreWolf|app:mpv" # mpd, zen, and mpv
               "default_input"
             ];
             bitrate = 320;

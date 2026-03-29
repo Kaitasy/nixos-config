@@ -14,21 +14,14 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b3795a4f-bbf8-43ea-b218-c4e6aee75d26";
+    { device = "/dev/disk/by-uuid/49f97315-d53b-4544-ad51-39fb36b39389";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/b3795a4f-bbf8-43ea-b218-c4e6aee75d26";
-      fsType = "btrfs";
-      options = [ "subvol=@home" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/E5F8-4FCE";
+    { device = "/dev/disk/by-uuid/CDF1-8E1F";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices = [ ];
