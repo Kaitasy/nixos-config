@@ -26,6 +26,11 @@ in {
       users.${cfg.username} = {
         user = cfg.username;
         systemd.enable = true;
+
+        xdg.config.files."nushell/config.nu".text = ''
+          $env.config.show_banner = false
+          $env.config.buffer_editor = "nvim"
+        '';
       };
     };
 
@@ -39,19 +44,22 @@ in {
       ];
       initialPassword = "1234";
       uid = 1000;
-      shell = pkgs.fish;
+      shell = pkgs.nushell;
     };
     users.groups.${cfg.username} = {};
 
     programs = {
-      fish = {
-        enable = true;
-        shellInit = "set -u fish_greeting";
-        promptInit = "${lib.getExe pkgs.starship} init fish | source";
-        shellAliases = {
-          ls = "${lib.getExe pkgs.eza} --icons -hS";
-        };
-      };
+      # fish = {
+      #   enable = true;
+      #   shellInit = "set -u fish_greeting";
+      #   promptInit = ''
+      #     ${lib.getExe pkgs.starship} init fish | source
+      #     zoxide init fish | source
+      #   '';
+      #   shellAliases = {
+      #     ls = "${lib.getExe pkgs.eza} --icons -hS";
+      #   };
+      # };
       zsh = {
         enable = true;
         shellAliases = {

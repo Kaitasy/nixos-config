@@ -97,8 +97,8 @@ in {
 
           render = {
             cm_fs_passthrough = 2;
-            cm_auto_hdr = 2;
-            cm_sdr_eotf = 2;
+            cm_auto_hdr = 0;
+            #cm_sdr_eotf = 2;
           };
 
           general = {
@@ -158,9 +158,9 @@ in {
             animation = [
               "global, 1, 30, default"
               "border, 1, 3.39, easeOutQuint"
-              "windows, 1, 4.79, easeOutQuint"
+              "windows, 1, 3.79, easeOutQuint"
               "windowsIn, 1, 3.5, easeOutQuint"
-              "windowsOut, 1, 1.49, linear, popin 87%"
+              "windowsOut, 1, 2.49, linear, popin 87%"
               "fadeIn, 1, 1.73, almostLinear"
               "fadeOut, 1, 1.46, almostLinear"
               "fade, 1, 3.03, quick"
@@ -178,7 +178,7 @@ in {
               "$mainMod, C, killactive"
               "$mainMod, X, togglefloating"
               "$mainMod, F, fullscreen"
-              "$mainMod, M, exit"
+              "$mainMod CTRL, M, exec, ${lib.getExe pkgs.hyprshutdown}"
 
               "$mainMod, left, movefocus, l"
               "$mainMod, right, movefocus, r"

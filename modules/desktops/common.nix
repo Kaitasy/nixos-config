@@ -23,6 +23,11 @@ in {
         default = "30303c";
         description = "Used for borders on tilers, launchers, dunst, etc.";
       };
+      enableTransparency = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable transparent background for certain programs";
+      };
     };
 
     cursor = {
@@ -102,22 +107,31 @@ in {
   };
 
   config = {
-    # Common packages
-    hj.packages = with pkgs;
-      [
-        wl-clipboard
-        nh
-        curl
-        openssh
-        eza
-        zoxide
-        bat
-        less
+    hj = {
+      # Common packages
+      packages = with pkgs;
+        [
+          wl-clipboard
+          nh
+          curl
+          openssh
+          eza
+          zoxide
+          bat
+          less
 
-        gnome-keyring
-        libsecret
-      ]
-      ++ [cfg.cursor.package];
+          gnome-keyring
+          libsecret
+        ]
+        ++ [cfg.cursor.package];
+
+      xdg.data.files."icons/default/index.theme" = {
+        generator = lib.generators.toINI {};
+        value = {
+          "Icon Theme".Inherits = cfg.cursor.name;
+        };
+      };
+    };
 
     services.dbus.implementation = "broker";
 

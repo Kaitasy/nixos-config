@@ -1,4 +1,8 @@
-{lib, config, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.modules.services.system.navidrome;
 in {
   options.modules.services.system.navidrome = {
@@ -11,6 +15,7 @@ in {
   config = lib.mkIf cfg.enable {
     services.navidrome = {
       enable = true;
+      openFirewall = true;
       settings.MusicFolder = cfg.musicFolder;
     };
 

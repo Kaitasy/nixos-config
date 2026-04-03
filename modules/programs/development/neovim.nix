@@ -51,6 +51,8 @@ in {
           nix.enable = true;
           clang.enable = true;
           rust.enable = true;
+          nu.enable = true;
+          qml.enable = true;
         };
 
         visuals = {

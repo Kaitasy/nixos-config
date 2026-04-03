@@ -57,7 +57,7 @@
 
     desktops = {
       common = {
-        wallpaper = ../../wallpapers/1726691593523505.jpg;
+        wallpaper = ../../wallpapers/1772566504527467.jpg;
         monitors = {
           DP-1 = {
             description = "Microstep G274QPF-QD CC2H253801114";
@@ -68,22 +68,12 @@
               bitdepth = 10;
             };
           };
-          HDMI-A-1 = {
-            description = "Samsung Electric Company U28E590 HTPJ708954";
-            resolution = "2560x1440";
-            x = -2560;
-            refreshRate = 60;
-            cm = {
-              primaries = "srgb";
-              bitdepth = 10;
-            };
-          };
         };
         input.sensitivity = -0.7;
       };
       hyprland = {
         enable = true;
-        useGit = false;
+        useGit = true;
         mainModKey = "SUPER";
         hypridle = {
           enable = true;
@@ -104,6 +94,13 @@
           ];
         };
       };
+      niri = {
+        enable = false;
+        useWipBranch = true;
+        binds = [
+          "Ctrl+F2 { spawn \"${lib.getExe self'.packages.gsr-replay-save}\"; }"
+        ];
+      };
     };
 
     programs = {
@@ -112,7 +109,10 @@
         git.enable = true;
       };
 
-      social.discord.enable = true;
+      social = {
+        fluffychat.enable = true;
+        discord.enable = true;
+      };
 
       gaming = {
         steam.enable = true;
@@ -121,6 +121,7 @@
         prismlauncher.enable = true;
         gamescope.enable = true;
         gamemode.enable = true;
+        trucky.enable = true;
       };
 
       media = {
@@ -140,12 +141,15 @@
       web = {
         librewolf.enable = true;
         qbittorrent.enable = true;
+        surge.enable = true;
       };
 
       vr.wivrn.enable = true;
 
       flatpak = {
         enable = true;
+
+        creativity.kdenlive = true;
 
         utility = {
           bottles = true;

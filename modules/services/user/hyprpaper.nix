@@ -30,5 +30,12 @@ in {
         execStart = "${lib.getExe pkgs.hyprpaper}";
       };
     };
+
+    modules.desktops.niri.extraConfig = ''
+      layer-rule {
+        match namespace="^hyprpaper$"
+        place-within-backdrop true
+      }
+    '';
   };
 }

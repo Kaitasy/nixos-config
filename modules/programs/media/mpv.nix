@@ -11,7 +11,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    hj.packages = [pkgs.mpv];
+    hj.packages = [
+      (pkgs.mpv.override {
+        scripts = with pkgs; [
+          mpvScripts.mpris
+        ];
+      })
+    ];
 
     xdg.mime.defaultApplications = builtins.listToAttrs (builtins.map (schema: {
         name = schema;

@@ -27,14 +27,25 @@ in {
       ];
     };
 
-    modules.desktops.hyprland.settings = {
-      bind = [
-        "$mainMod, R, exec, ${lib.getExe walkerPkg}"
-      ];
-      exec-once = [
-        "${lib.getExe' inputs'.elephant.packages.default "elephant"}"
-        "${lib.getExe walkerPkg} --gapplication-service"
-      ];
+    modules.desktops = {
+      hyprland.settings = {
+        bind = [
+          "$mainMod, R, exec, ${lib.getExe walkerPkg}"
+        ];
+        exec-once = [
+          "${lib.getExe' inputs'.elephant.packages.default "elephant"}"
+          "${lib.getExe walkerPkg} --gapplication-service"
+        ];
+      };
+      niri = {
+        binds = [
+          "Mod+R { spawn \"${lib.getExe walkerPkg}\"; }"
+        ];
+        spawnShAtStartup = [
+          "${lib.getExe' inputs'.elephant.packages.default "elephant"}"
+          "${lib.getExe walkerPkg} --gapplication-service"
+        ];
+      };
     };
 
     hj = {

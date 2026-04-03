@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (config.modules.core) fonts;
+  inherit (config.modules.desktops) common;
 
   cfg = config.modules.programs.utility.kitty;
 in {
@@ -20,7 +21,12 @@ in {
         font_family ${fonts.monospace.name}
         font_size 17
 
-        background_opacity 0.65
+        background_opacity ${
+          if common.style.enableTransparency
+          then "0.65"
+          else "1"
+        }
+        background_blur 1
         confirm_os_window_close 999
         default_pointer_shape arrow
         enable_audio_bell no
@@ -74,8 +80,13 @@ in {
       '';
     };
 
-    modules.desktops.hyprland.settings.bind = [
-      "$mainMod, Q, exec, ${lib.getExe pkgs.kitty}"
-    ];
+    modules.desktops = {
+      hyprland.settings.bind = [
+        "$mainMod, Q, exec, ${lib.getExe pkgs.kitty}"
+      ];
+      niri.binds = [
+        ''Mod+Q { spawn "${lib.getExe pkgs.kitty}"; }''
+      ];
+    };
   };
 }

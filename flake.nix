@@ -50,6 +50,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.elephant.follows = "elephant";
     };
+
+    niri = {
+      url = "github:niri-wm/niri?ref=wip/branch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

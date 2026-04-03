@@ -18,5 +18,12 @@ in {
         pkgs.proton-ge-bin
       ];
     };
+
+    modules.desktops.niri.extraConfig = ''
+      window-rule {
+        match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+        default-floating-position x=8 y=8 relative-to="bottom-right"
+      }
+    '';
   };
 }
