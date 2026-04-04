@@ -167,6 +167,7 @@
       system = {
         searxng.enable = true;
         mullvad.enable = true;
+        docker.enable = true;
 
         # I really need to get a server. The arr services are growing
         navidrome = {

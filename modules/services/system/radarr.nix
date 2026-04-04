@@ -10,7 +10,7 @@
   config = lib.mkIf config.modules.services.system.radarr.enable {
     services.radarr = {
       enable = true;
+      openFirewall = true;
     };
-    systemd.services.radarr.serviceConfig.PrivateUsers = lib.mkForce false;
   };
 }
