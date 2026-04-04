@@ -36,6 +36,11 @@
     };
   };
 
+  users.users = {
+    sonarr.extraGroups = ["starlm"];
+    radarr.extraGroups = ["starlm"];
+  };
+
   modules = {
     core = {
       user.username = "starlm";
@@ -140,7 +145,7 @@
 
       web = {
         librewolf.enable = true;
-        qbittorrent.enable = true;
+        #qbittorrent.enable = true;
         surge.enable = true;
       };
 
@@ -160,13 +165,19 @@
 
     services = {
       system = {
-        jellyfin.enable = true;
         searxng.enable = true;
         mullvad.enable = true;
+
+        # I really need to get a server. The arr services are growing
         navidrome = {
           enable = true;
           musicFolder = "/mnt/big_bulk/Music";
         };
+        jellyfin.enable = true;
+        prowlarr.enable = true;
+        sonarr.enable = true;
+        radarr.enable = true;
+        qbittorrent.enable = true;
       };
 
       user = {
