@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }: let
   cfg = config.modules.programs.gaming.steam;
@@ -13,7 +14,10 @@ in {
   config = lib.mkIf cfg.enable {
     programs.steam = {
       enable = true;
-      protontricks.enable = true;
+      protontricks = {
+        enable = true;
+        package = inputs.nixpkgs-pr504853.legacyPackages."x86_64-linux".protontricks;
+      };
       extraCompatPackages = [
         pkgs.proton-ge-bin
       ];

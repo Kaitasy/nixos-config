@@ -55,6 +55,8 @@
       url = "github:niri-wm/niri?ref=wip/branch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixpkgs-pr504853.url = "github:NixOS/nixpkgs/pull/504853/head";
   };
 
   outputs = inputs:
